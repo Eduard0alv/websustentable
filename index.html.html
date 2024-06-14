@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empresas Sustentables</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+            background-image: url('3.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .container {
+            margin: 5px; /* Añadir margen de 5px */
+        }
+
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            position: fixed;
+            width: calc(100% - 10px); /* Ajustado para considerar el margen de 5px en ambos lados */
+            top: 0;
+            left: 5px; /* Ajustado para considerar el margen de 5px */
+            z-index: 1000;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: white;
+            font-size: 16px;
+            padding: 10px 15px;
+            transition: color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            color: #FFD700;
+        }
+
+        .section {
+            padding-top: 100px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .section-content {
+            padding: 20px;
+            text-align: center;
+            background: none;
+            color: black;
+            border-radius: 10px;
+            opacity: 0;
+            transform: scale(0.8) translateX(-100%);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .visible {
+            opacity: 1;
+            transform: scale(1) translateX(0);
+        }
+
+        .zoom-fade-in {
+            animation: zoomFadeIn 1s ease-out;
+        }
+
+        h1 {
+            font-size: 64px;
+            margin: 40px 0 10px;
+            font-family: 'Pacifico', cursive;
+            text-align: center;
+            animation: cambioColor 3s infinite alternate, pulsate 2s infinite;
+            color: #ffff95;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin: 40px 0 150px;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            animation: fadeMove 3s infinite alternate;
+            color: gold;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        @keyframes cambioColor {
+            0% { color: #ffff95; }
+            50% { color: #175803bd; }
+            100% { color: #492803; }
+        }
+
+        @keyframes pulsate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes fadeMove {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+            25% {
+                opacity: 0.75;
+                transform: translate(10px, 10px);
+            }
+            50% {
+                opacity: 0.5;
+                transform: translate(-10px, -10px);
+            }
+            75% {
+                opacity: 0.75;
+                transform: translate(10px, -10px);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+        }
+
+        @keyframes zoomFadeIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        input[type="text"], textarea {
+            width: 300px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            opacity: 0;
+            transform: translateX(-100%);
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        input[type="text"].visible, textarea.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+       /* Cambiar el color de los títulos específicos a verde fuerte */
+       #seccion2 h2,
+        #seccion3 h2,
+        #seccion4 h2,
+        #seccion5 h2,
+        #seccion6 h2,
+        #seccion7 h2 {
+            color: #228B22; /* Verde fuerte */
+        }
+
+          /* Estilos para el contenedor de video */
+        .video-container {
+            margin: 50px auto; /* Espaciado */
+            max-width: 400px; /* Ancho máximo */
+            overflow: hidden; /* Ocultar desbordamiento */
+            border-radius: 10px; /* Borde redondeado */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Sombra */
+            transform: rotate(-90deg); /* Girar 90 grados en sentido contrario */
+        }
+
+        .video-container video {
+            width: 100%; /* Ancho completo */
+            height: auto; /* Altura automática */
+            display: block; /* Mostrar como bloque */
+        }
+    </style>
+</head>
+<body>
+    <!-- Barra de navegación -->
+    <div class="navbar">
+        <a href="#seccion1">Inicio</a>
+        <a href="#seccion2">Reciclaje y Reutilización</a>
+        <a href="#seccion3">Conservación de la Biodiversidad</a>
+        <a href="#seccion4">Energías Renovables</a>
+        <a href="#seccion5">Importancia de la Comunicación</a>
+        <a href="#seccion6">Programa de Compensación del Carbono</a>
+        <a href="#seccion7">Medidas para Reducir la Huella de Carbono</a>
+    </div>
+    <!-- Reproductor de música de fondo -->
+    <audio id="miAudio" autoplay loop>
+        <source src="Mu.mp3" type="audio/mpeg">
+        Tu navegador no soporta la reproducción de audio.
+    </audio>
+
+    <script>
+        // Espera a que se cargue la página
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const miAudio = document.getElementById('miAudio');
+            miAudio.muted = false;
+
+            miAudio.play().catch(error => {
+                console.log('Error al intentar reproducir el audio:', error);
+                document.body.addEventListener('click', () => {
+                    miAudio.play().catch(error => {
+                        console.log('Error al intentar reproducir el audio:', error);
+                    });
+                });
+            });
+        });
+
+        // Función para detectar cuando los elementos están en la vista
+        function checkVisibility() {
+            const elements = document.querySelectorAll('.section-content, input[type="text"], textarea');
+            const scrollPosition = window.innerHeight + window.scrollY;
+            
+            elements.forEach(element => {
+                if (element.getBoundingClientRect().top + window.scrollY < scrollPosition &&
+                    element.getBoundingClientRect().bottom + window.scrollY > window.scrollY) {
+                    element.classList.add('visible');
+                } else {
+                    element.classList.remove('visible');
+                }
+            });
+        }
+
+        window.addEventListener('scroll', checkVisibility);
+        window.addEventListener('resize', checkVisibility);
+
+        // Agregar animación al hacer clic en la barra de navegación
+        document.querySelectorAll('.navbar a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetSection = document.querySelector(this.getAttribute('href'));
+                const sectionContent = targetSection.querySelector('.section-content');
+
+                if (sectionContent) {
+                    sectionContent.classList.remove('zoom-fade-in');
+                    void sectionContent.offsetWidth; // Forzar reflujo para reiniciar la animación
+                    sectionContent.classList.add('zoom-fade-in');
+                }
+
+                targetSection.scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Revisar visibilidad al cargar la página
+        checkVisibility();
+    </script>
+
+    <div class="container">
+        <!-- Portada -->
+        <div id="seccion1" class="section content">
+            <h1>¡Empresas Sustentables!</h1>
+            <h2>Liderazgo</h2>
+            <div class="section-content">
+                <!-- Resto del contenido... -->
+            </div>
+        </div
+        <!-- Sección 1: Reciclaje y Reutilización de Materiales -->
+<div id="seccion2" class="section">
+    <div class="section-content">
+        <h2>Reciclaje y Reutilización de Materiales</h2>
+        <p>El reciclaje y la reutilización de materiales son prácticas clave para reducir el impacto ambiental y promover la sostenibilidad. A continuación, se describen brevemente cada una:
+            ### Reciclaje
+            El reciclaje implica la recolección y procesamiento de materiales que de otro modo serían desechados como basura para convertirlos en nuevos productos. Esto incluye materiales como papel, vidrio, plástico, metales y más. El reciclaje ayuda a conservar recursos naturales, reducir la contaminación, y disminuir la cantidad de residuos que terminan en vertederos.
+            ### Reutilización
+            La reutilización se refiere al uso repetido de un producto o material sin necesidad de procesarlo significativamente. Esto puede incluir actividades como reparar, renovar, o simplemente utilizar objetos para otros propósitos. La reutilización prolonga la vida útil de los materiales y productos, reduciendo así la demanda de nuevos recursos y la generación de desechos.
+            Ambas prácticas son fundamentales en la gestión de residuos y son esenciales para la transición hacia una economía circular, donde los recursos se utilizan de manera más eficiente y sostenible..</p>
+    </div>
+</div>
+
+<!-- Sección 2: Conservación de la Biodiversidad -->
+<div id="seccion3" class="section">
+    <div class="section-content">
+        <h2>Conservación de la Biodiversidad</h2>
+        <p>La conservación de la biodiversidad es fundamental por varias razones. Primero, la biodiversidad es la base de los ecosistemas y proporciona servicios ecosistémicos vitales para el bienestar humano. Estos servicios incluyen la producción de alimentos, la regulación del clima, la purificación del aire y el agua, el control de plagas, la polinización de cultivos, entre otros.
+            Además, la biodiversidad es clave para la estabilidad de los ecosistemas, ya que una mayor diversidad de especies aumenta la resiliencia frente a perturbaciones como el cambio climático, la degradación de los suelos y la contaminación. La biodiversidad también puede tener un valor intrínseco y estético, ya que cada especie tiene un papel único en el funcionamiento del ecosistema y contribuye a su belleza y diversidad.
+            La conservación de la biodiversidad también es importante por razones éticas y morales, ya que todas las formas de vida tienen derecho a existir y a mantener su lugar en la naturaleza. La pérdida de biodiversidad puede tener graves consecuencias para la humanidad, ya que muchas de nuestras actividades dependen de los servicios ecosistémicos que nos brindan los ecosistemas sanos y equilibrados.
+            La conservación de la biodiversidad es fundamental para asegurar la sostenibilidad de los ecosistemas, garantizar el bienestar humano y preservar la riqueza natural y cultural de nuestro planeta para las generaciones futuras.</p>
+    </div>
+</div>
+
+<!-- Sección 3: Energías Renovables -->
+<div id="seccion4" class="section">
+    <div class="section-content">
+        <h2>Energías Renovables</h2>
+        <p>Las energías renovables son un tipo de energías derivadas de fuentes naturales que llegan a reponerse más rápido de lo que pueden consumirse. Un ejemplo de estas fuentes son, por ejemplo, la luz solar y el viento; estas fuentes se renuevan continuamente. Las fuentes de energía renovable abundan y las encontramos en cualquier entorno.
+            Por el contrario, los combustibles fósiles, como el carbón, el petróleo y el gas, constituyen fuentes de energía no renovables que tardan cientos de millones de años en formarse. Los combustibles fósiles producen la energía al quemarse, lo que provoca emisiones dañinas en forma de gases de efecto invernadero, como el dióxido de carbono.
+            La generación de energías renovables produce muchas menos emisiones que la quema de combustibles fósiles. Una transición de los combustibles fósiles, los cuales representan en la actualidad la mayor parte de las emisiones, a energías renovables resulta fundamental para abordar la crisis producida por el cambio climático.
+            Hoy en día, las energías renovables son más baratas en la mayoría de los países y generan tres veces más puestos de trabajo que los combustibles fósiles.Entre las energías renovables se encuentran la energía eólica, la geotérmica, la hidroeléctrica, la mareomotriz, la solar, la undimotriz, la biomasa y los biocarburantes. La energía verde es cada vez más importante en la sociedad actual.</p>
+    </div>
+</div>
+
+<!-- Sección 4: Importancia de la Comunicación -->
+<div id="seccion5" class="section">
+    <div class="section-content">
+        <h2>Importancia de la Comunicación</h2>
+        <p>La comunicación es esencial en todos los aspectos de la vida, ya que nos permite transmitir información, sentimientos, ideas y pensamientos a otras personas. Algunas razones por las cuales la comunicación es importante son:
+            1. Facilita las relaciones interpersonales: La comunicación efectiva es clave para establecer relaciones saludables y satisfactorias con los demás. Nos permite entendernos mutuamente, resolver conflictos y fortalecer la confianza.
+            2. Mejora la productividad: En un entorno laboral, la comunicación clara y eficaz es fundamental para la coordinación de tareas, la toma de decisiones y el logro de metas y objetivos.
+            3. Favorece el aprendizaje: A través de la comunicación, podemos adquirir nuevos conocimientos, compartir información y experiencias con otras personas, y aprender de ellas.
+            4. Potencia el desarrollo personal: La comunicación nos permite expresar nuestras emociones, pensamientos y opiniones, lo cual es fundamental para el crecimiento personal y el autoconocimiento.
+            5. Impulsa el trabajo en equipo: En un entorno laboral, la comunicación efectiva fomenta la colaboración entre los miembros de un equipo, promoviendo la creatividad, la innovación y el logro de resultados exitosos.
+            En resumen, la comunicación es esencial en todos los ámbitos de la vida, ya que nos permite conectarnos con los demás, colaborar, resolver problemas y alcanzar nuestros objetivos de manera eficaz.</p>
+    </div>
+</div>
+
+<!-- Sección 5: Programa de Compensación del Carbono -->
+<div id="seccion6" class="section">
+    <div class="section-content">
+        <h2>Programa de Compensación del Carbono</h2>
+        <p>Un programa de compensación de carbono es una estrategia que adopta una empresa sustentable para contrarrestar las emisiones de gases de efecto invernadero que genera en sus operaciones. Estas emisiones son una de las principales causas del cambio climático y contribuyen al calentamiento global.
+            Al implementar un programa de compensación de carbono, la empresa se compromete a reducir su huella de carbono mediante la implementación de acciones como la eficiencia energética, el uso de fuentes de energía renovable y la adopción de prácticas sostenibles. Sin embargo, es posible que aún existan emisiones inevitables que no se puedan eliminar por completo.
+            En este sentido, la compensación de carbono permite a la empresa equilibrar sus emisiones al financiar proyectos que reducen o eliminan emisiones en otros lugares. Estos proyectos pueden incluir la reforestación, la conservación de bosques, la implementación de tecnologías limpias o la captura y almacenamiento de carbono.
+            Al tener un programa de compensación de carbono, la empresa demuestra su compromiso con la sostenibilidad y la responsabilidad ambiental. Contribuye a la mitigación del cambio climático y ayuda a preservar el medio ambiente para las generaciones futuras. Además, puede mejorar la reputación de la empresa, fortalecer la confianza de los consumidores y atraer a clientes y socios que valoran la sostenibilidad.</p>
+    </div>
+</div>
+<div id="seccion7" class="section">
+    <div class="section-content">
+        <h2>Medidas Para Reducir La Huella De Carbono</h2>
+        <p>Reducir la huella de carbono implica tomar acciones para disminuir las emisiones de gases de efecto invernadero. Aquí hay algunas medidas prácticas que se pueden tomar:
+                1. *Transporte Sostenible*:
+                - Utilizar el transporte público, bicicletas o caminar en lugar de conducir automóviles.
+                Optar por vehículos eléctricos o híbridos.
+                Compartir viajes (carpooling) para reducir el número de vehículos en la carretera.
+                2. *Eficiencia Energética en el Hogar*:
+                - Mejorar el aislamiento de viviendas para reducir la necesidad de calefacción y refrigeración.
+                - Utilizar bombillas LED y electrodomésticos de bajo consumo energético.
+                - Apagar y desconectar dispositivos electrónicos cuando no se utilizan.
+                3. *Energías Renovables*:
+                Instalar paneles solares o sistemas de energía eólica en el hogar.
+                Contratar proveedores de energía que ofrezcan opciones de energía renovable.
+                4. *Consumo Responsable*:
+                Comprar productos locales y de temporada para reducir las emisiones asociadas con el transporte. Reducir el consumo de carne y productos lácteos, ya que la producción de estos alimentos genera altas emisiones de CO2.
+                - Evitar el uso de productos desechables y optar por productos reutilizables.
+                5. *Gestión de Residuos*.
+                Reciclar y reutilizar materiales siempre que sea posible.
+                Compostar residuos orgánicos para reducir la cantidad de basura enviada a los vertederos. -
+                Comprar productos con menos embalaje o en envases reciclables.
+                6. *Conservación del Agua*:
+                - Instalar dispositivos de ahorro de agua como cabezales de ducha de bajo flujo y grifos eficientes. Recoger y reutilizar agua de lluvia para riego y otras necesidades.
+                7. *Educación y Conciencia*:
+                - Informarse y educar a otros sobre la importancia de reducir la huella de carbono.
+                Participar en iniciativas comunitarias y apoyar políticas y empresas que promueven sostenibilidad.
+                Adoptar estas medidas no solo ayuda a reducir la huella de carbono individual, sino que también contribuye al bienestar del planeta y las generaciones futuras.</p>
+     
+     <!-- Video -->
+     <div class="video-container">
+        <video id="miVideo" controls>
+            <source src="Video.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+        </video>
+    </div>
+
+    <!-- Música de fondo -->
+    <audio id="miAudio" autoplay loop>
+        <source src="Mu.mp3" type="audio/mpeg">
+        Tu navegador no soporta la reproducción de audio.
+    </audio>
+
+    <!-- Script para controlar el volumen del video y la música de fondo -->
+    <script>
+        document.getElementById('miVideo').volume = 0.2; // Establecer volumen inicial del video
+
+        // Obtener elementos de video y audio
+        const video = document.getElementById('miVideo');
+        const audio = document.getElementById('miAudio');
+
+        // Detener música de fondo cuando el video comience a reproducirse
+        video.addEventListener('play', () => {
+            audio.pause(); // Pausar música de fondo
+        });
+
+        // Reanudar música de fondo cuando el video se detenga
+        video.addEventListener('pause', () => {
+            audio.play(); // Reanudar música de fondo
+        });
+    </script>
+</body>
+</html>
+
+<div class="info-container" style="text-align: center;">
+    <div class="info-column" style="display: inline-block; text-align: left;">
+        <h2>Motivación</h2>
+        <div class="info-content" style="display: inline-block; text-align: left;">
+            <h3>Introducción</h3>
+            <p>Es lo que nos hace avanzar en la vida, nos estimula a aprender, establecer mejorar y cumplir objetivos. Impulsa la creatividad y permite mejorar las competencias.</p>
+            <h4 style="text-align: center;">Temas vistos:</h4>
+            <ul style="list-style-type: none; padding-left: 0; text-align: center;">
+                <li>¿Qué es la motivación?</li>
+                <li>La importancia de la motivación</li>
+                <li>Pirámide de Maslow</li>
+                <li>¿Qué son las metas y sus tipos?</li>
+                <li>Consejos de motivación</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="info-container" style="text-align: center;">
+    <div class="info-column" style="display: inline-block; text-align: left;">
+        <h2>Comunicación</h2>
+        <div class="info-content" style="display: inline-block; text-align: left;">
+           
+            <p>Aprender la importancia de contar con una estrategia de comunicación eficaz así como sus principales componentes.</p>
+            <h4 style="text-align: center;">Temas vistos:</h4>
+            <ul style="list-style-type: none; padding-left: 0; text-align: center;">
+                <li>Comunicación verbal</li>
+                <li>Comunicación no verbal</li>
+                <li>Comunicación escrita</li>
+                <li>Comunicación visual</li>
+                <li>Comunicación aditiva</li>
+                <li>Comunicación asertiva</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="info-container" style="text-align: center;">
+    <div class="info-column" style="display: inline-block; text-align: left;">
+        <h2>Dinámica de grupo</h2>
+        <div class="info-content" style="display: inline-block; text-align: left;">
+            
+            <p>Cómo llevar a cabo una buena comunicación y excelente relación laboral a través de dinámicas</p>
+            <h4 style="text-align: center;">Temas vistos:</h4>
+            <ul style="list-style-type: none; padding-left: 0; text-align: center;">
+                <li>Confianza laboral </li>
+                <li>Trabajo en equipo</li>
+                <li>Superacion personal</li>
+                <li>memorizacion en equipo</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="info-container" style="text-align: center;">
+    <div class="info-column" style="display: inline-block; text-align: left;">
+        <h2>Resolución de conflictos</h2>
+        <div class="info-content" style="display: inline-block; text-align: left;">
+           
+            <p>nosotros como resolución de conflicto servimos en conjunto con la capacitación, motivación y valoración de puesto para llevar a cabo una sana y buena relación empresarial
+            </p>
+            <h4 style="text-align: center;">Temas vistos:</h4>
+            <ul style="list-style-type: none; padding-left: 0; text-align: center;">
+                <li>La diferencia entre conflicto y discrepancia </li>
+                <li>Cuando se resuelve un conflicto </li>
+                <li>Razones para negociar dentro de un conflicto</li>
+                <li>Como resolver conflictos </li>
+                <li>Los conflictos y sus consecuencias</li>
+              
+            </ul>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="info-container" style="text-align: center;">
+    <div class="info-column" style="display: inline-block; text-align: left;">
+        <h2>Liderazgo</h2>
+        <div class="info-content" style="display: inline-block; text-align: left;">
+           
+           <p> El liderazgo es la habilidad de guiar e inspirar a un grupo hacia objetivos comunes, utilizando visión, integridad, empatía y habilidades de comunicación para motivar y empoderar a otros.</p>
+            <h4 style="text-align: center;">Temas vistos:</h4>
+            <ul style="list-style-type: none; padding-left: 0; text-align: center;">
+                <li>¿Cómo ser un líder y como llevar a cabo un liderazgo?  </li>
+                <li>Diferencias entre un líder y un jefe</li>
+                <li>¿Que es un jefe?</li>
+                <li>¿Que es un líder?</li>
+                <li>¿como trabaja un líder?</li>
+              <li>Características de un líder</li>
+            </ul>
+        </div>
+    </div>
+</div>
